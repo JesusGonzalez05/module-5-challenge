@@ -3,16 +3,22 @@ $("#currentDay").text(moment().format("MMM Do, YYYY"));
 
 // allow time blocks to change color based on current time
 var currentTime = moment().format('HH');
-$('.time').each(function(){
-    var timeListed = $('.time').parent().attr("id");
-    if (currentTime === timeListed) {
-      $(this).addClass("present")
-    }
 
+$('.time').each(function(){
+  var timeListed = $(this).parent().attr("id");
+  if (currentTime === timeListed) {
+    $(this).addClass("present")
+  }
+  else if (currentTime < timeListed) {
+    $(this).removeClass("present")
+    $(this).addClass("future")
+  }
+  if (currentTime > timeListed) {
+    $(this).removeClass("future")
+    $(this).addClass("past")
+  }
 });
-var hours = $('.time').parent().attr("id");
-console.log(hours)
-if (hours )
+
 // save button adds time and text to local storage
 var saveButton = $('.saveBtn');
 
